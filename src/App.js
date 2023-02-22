@@ -8,7 +8,8 @@ function App() {
   const [invalidColor, setInvalidColor] = useState(false);
 
   useEffect(() => {
-    const colors = new Values("#f15025").all(10);
+    const lastColor = localStorage.getItem("lastColor");
+    const colors = new Values(lastColor || "#f15025").all(10);
     setColorList(colors);
   }, []);
 
@@ -19,6 +20,7 @@ function App() {
       const colors = new Values(color).all(10);
       setColorList(colors);
       setInvalidColor(false);
+      localStorage.setItem("lastColor", color);
     } catch (error) {
       setInvalidColor(true);
       console.log("Please enter a valid color");
