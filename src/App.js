@@ -25,7 +25,6 @@ function App() {
     }
   };
 
-  console.log(colorList);
   return (
     <>
       <section className="container">
@@ -43,7 +42,9 @@ function App() {
         </form>
       </section>
       <section className="colors">
-        <Color colorList={colorList} />
+        {colorList.map((color, idx) => (
+          <Color key={idx} color={color} idx={idx} />
+        ))}
       </section>
     </>
   );
