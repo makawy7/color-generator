@@ -6,9 +6,9 @@ function App() {
   const colorRef = useRef(null);
   const [colorList, setColorList] = useState([]);
   const [invalidColor, setInvalidColor] = useState(false);
+  const lastColor = localStorage.getItem("lastColor");
 
   useEffect(() => {
-    const lastColor = localStorage.getItem("lastColor");
     const colors = new Values(lastColor || "#f15025").all(10);
     setColorList(colors);
   }, []);
@@ -34,9 +34,9 @@ function App() {
         <form>
           <input
             type="text"
-            placeholder="#f15025"
+            placeholder={lastColor || "#f15025"}
             ref={colorRef}
-            className={`${invalidColor ? "error" : ""}`}
+            className={invalidColor ? "error" : ""}
           />
           <button onClick={generateColors} type="submit" className="btn">
             submit
